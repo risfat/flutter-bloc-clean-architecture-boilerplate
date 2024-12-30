@@ -1,4 +1,4 @@
-import 'package:bloc_clean_architecture/src/comman/constant.dart';
+import 'package:bloc_clean_architecture/src/common/constants.dart';
 import 'package:bloc_clean_architecture/src/utilities/debouncer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

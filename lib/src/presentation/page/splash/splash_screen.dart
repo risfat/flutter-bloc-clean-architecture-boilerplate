@@ -1,4 +1,4 @@
-import 'package:bloc_clean_architecture/src/comman/routes.dart';
+import 'package:bloc_clean_architecture/src/common/routes.dart';
 import 'package:bloc_clean_architecture/src/presentation/bloc/authenticator_watcher/authenticator_watcher_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

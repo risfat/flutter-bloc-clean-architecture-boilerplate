@@ -12,7 +12,7 @@ This file defines the light and dark theme configurations for the application.
 
 **Dependencies:**
 
-* `package:bloc_clean_architecture/src/comman/colors.dart`: Provides color constants for the theme.
+* `package:bloc_clean_architecture/src/common/colors.dart`: Provides color constants for the theme.
 * `package:flutter/material.dart`: Provides Flutter's built-in theming capabilities.
 * `package:google_fonts/google_fonts.dart`: Provides Google Fonts integration for custom typography.
 

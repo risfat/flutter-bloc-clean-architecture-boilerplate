@@ -19,7 +19,7 @@ The `AuthenticationRepository` abstract class defines the interface for an authe
 | `login(String email, String password)` | Attempts to log in a user with the provided email and password. Returns `Right(null)` on successful login, and `Left(Failure)` on failure. |
 
 ```dart
-import 'package:bloc_clean_architecture/src/comman/failure.dart';
+import 'package:bloc_clean_architecture/src/common/failures.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class AuthenticationRepository {

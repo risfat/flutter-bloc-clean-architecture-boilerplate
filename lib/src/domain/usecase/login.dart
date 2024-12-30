@@ -1,4 +1,4 @@
-import 'package:bloc_clean_architecture/src/comman/failure.dart';
+import 'package:bloc_clean_architecture/src/common/failures.dart';
 import 'package:bloc_clean_architecture/src/domain/repositories/autentication_repository.dart';
 import 'package:dartz/dartz.dart';
 

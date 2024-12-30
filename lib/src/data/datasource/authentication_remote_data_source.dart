@@ -1,5 +1,5 @@
-import 'package:bloc_clean_architecture/src/comman/api.dart';
-import 'package:bloc_clean_architecture/src/comman/constant.dart';
+import 'package:bloc_clean_architecture/src/common/api.dart';
+import 'package:bloc_clean_architecture/src/common/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,8 +14,8 @@ class AuthenticationRemoteDataSourceImpl
   @override
   Future<void> login(String email, String password) async {
     try {
-    final prefs = await SharedPreferences.getInstance();
-     final response = await dio.post(API.LOGIN, data: {
+      final prefs = await SharedPreferences.getInstance();
+      final response = await dio.post(API.LOGIN, data: {
         'email': email,
         'password': password,
       });

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bloc_clean_architecture/src/comman/exception.dart';
-import 'package:bloc_clean_architecture/src/comman/failure.dart';
+import 'package:bloc_clean_architecture/src/common/exceptions.dart';
+import 'package:bloc_clean_architecture/src/common/failures.dart';
 import 'package:bloc_clean_architecture/src/data/datasource/authentication_remote_data_source.dart';
 import 'package:bloc_clean_architecture/src/domain/repositories/autentication_repository.dart';
 import 'package:dartz/dartz.dart';

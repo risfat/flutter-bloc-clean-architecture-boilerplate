@@ -1,9 +1,8 @@
-import 'package:bloc_clean_architecture/src/comman/colors.dart';
-import 'package:bloc_clean_architecture/src/comman/constant.dart';
+import 'package:bloc_clean_architecture/src/common/colors.dart';
+import 'package:bloc_clean_architecture/src/common/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-
   const CustomOutlinedButton({
     Key? key,
     required this.onTap,
@@ -13,7 +12,7 @@ class CustomOutlinedButton extends StatelessWidget {
     this.color = ColorLight.primary,
     this.labelColor = Colors.white,
   }) : super(key: key);
-  
+
   final void Function()? onTap;
   final String? label;
   final double height;
@@ -30,7 +29,7 @@ class CustomOutlinedButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onTap,
         style: OutlinedButton.styleFrom(
-          disabledForegroundColor:  Colors.red,
+          disabledForegroundColor: Colors.red,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(RADIUS),
             side: BorderSide(

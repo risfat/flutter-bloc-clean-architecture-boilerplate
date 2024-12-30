@@ -1,4 +1,4 @@
-import 'package:bloc_clean_architecture/src/comman/routes.dart';
+import 'package:bloc_clean_architecture/src/common/routes.dart';
 import 'package:bloc_clean_architecture/src/presentation/page/auth/sign_in_screen.dart';
 import 'package:bloc_clean_architecture/src/presentation/page/auth/sign_up_screen.dart';
 import 'package:bloc_clean_architecture/src/presentation/page/dashboard/dashboard_screen.dart';
@@ -48,7 +48,6 @@ GoRouter routerinit = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const DashBoardScreen();
       },
-
     ),
   ],
   errorPageBuilder: (context, state) {

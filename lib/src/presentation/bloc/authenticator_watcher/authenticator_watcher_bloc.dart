@@ -1,11 +1,11 @@
-import 'package:bloc_clean_architecture/main.dart';
-import 'package:bloc_clean_architecture/src/comman/constant.dart';
+import 'package:bloc_clean_architecture/src/common/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+part 'authenticator_watcher_bloc.freezed.dart';
 part 'authenticator_watcher_event.dart';
 part 'authenticator_watcher_state.dart';
-part 'authenticator_watcher_bloc.freezed.dart';
 
 class AuthenticatorWatcherBloc
     extends Bloc<AuthenticatorWatcherEvent, AuthenticatorWatcherState> {
@@ -19,10 +19,9 @@ class AuthenticatorWatcherBloc
           final token = prefs.getString(ACCESS_TOKEN);
           final showOnbording = prefs.getString(ONBOARDING);
           if (showOnbording == null) {
-            prefs.setString(ONBOARDING,ONBOARDING);
+            prefs.setString(ONBOARDING, ONBOARDING);
             emit(const AuthenticatorWatcherState.isFirstTime());
-          } else 
-          if (token != null) {
+          } else if (token != null) {
             emit(const AuthenticatorWatcherState.authenticated());
           } else {
             emit(const AuthenticatorWatcherState.unauthenticated());

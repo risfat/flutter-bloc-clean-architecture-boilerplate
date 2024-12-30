@@ -19,7 +19,7 @@ This documentation outlines the `SignIn` use case, which handles the process of 
 
 | Import | Description |
 |---|---|
-| `package:bloc_clean_architecture/src/comman/failure.dart` | Imports the `Failure` class, which represents a general error type. |
+| `package:bloc_clean_architecture/src/common/failure.dart` | Imports the `Failure` class, which represents a general error type. |
 | `package:bloc_clean_architecture/src/domain/repositories/autentication_repository.dart` | Imports the `AuthenticationRepository` interface, which defines the methods for interacting with authentication logic. |
 | `package:dartz/dartz.dart` | Imports the `Either` type from the `dartz` package, used for handling potential failures. |
 

@@ -1,7 +1,6 @@
-
-import 'package:bloc_clean_architecture/src/comman/colors.dart';
-import 'package:bloc_clean_architecture/src/comman/constant.dart';
-import 'package:bloc_clean_architecture/src/comman/screens.dart';
+import 'package:bloc_clean_architecture/src/common/colors.dart';
+import 'package:bloc_clean_architecture/src/common/constants.dart';
+import 'package:bloc_clean_architecture/src/common/screens.dart';
 import 'package:bloc_clean_architecture/src/presentation/cubit/theme/theme_cubit.dart';
 import 'package:bloc_clean_architecture/src/presentation/widget/custom_elevated_button.dart';
 import 'package:bloc_clean_architecture/src/presentation/widget/custom_outlined_button.dart';
@@ -183,7 +182,7 @@ class _BuildButtonIcon extends StatelessWidget {
     required this.icon,
     required this.label,
   }) : super(key: key);
-  
+
   final VoidCallback onTap;
   final IconData icon;
   final String label;
