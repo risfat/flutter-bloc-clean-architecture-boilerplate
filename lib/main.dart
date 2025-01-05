@@ -1,17 +1,18 @@
 import 'dart:async';
 
-import 'package:bloc_clean_architecture/src/common/themes.dart';
-import 'package:bloc_clean_architecture/src/presentation/bloc/authenticator_watcher/authenticator_watcher_bloc.dart';
-import 'package:bloc_clean_architecture/src/presentation/bloc/sign_in_form/sign_in_form_bloc.dart';
-import 'package:bloc_clean_architecture/src/presentation/cubit/theme/theme_cubit.dart';
-import 'package:bloc_clean_architecture/src/utilities/app_bloc_observer.dart';
-import 'package:bloc_clean_architecture/src/utilities/logger.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import './injection.dart' as di;
-import 'src/utilities/go_router_init.dart';
+import 'core/utilities/app_bloc_observer.dart';
+import 'core/utilities/go_router.dart';
+import 'core/utilities/logger.dart';
+import 'core/utilities/themes.dart';
+import 'di/injection_container.dart' as di;
+import 'presentation/bloc/authenticator_watcher/authenticator_watcher_bloc.dart';
+import 'presentation/bloc/sign_in_form/sign_in_form_bloc.dart';
+import 'presentation/bloc/user/user_bloc.dart';
+import 'presentation/cubit/theme/theme_cubit.dart';
 
 void main() {
   logger.runLogging(
@@ -20,8 +21,7 @@ void main() {
         WidgetsFlutterBinding.ensureInitialized();
         Bloc.transformer = bloc_concurrency.sequential();
         Bloc.observer = const AppBlocObserver();
-        di.init();
-
+        di.initializeDependencies();
         runApp(const MyApp());
       },
       logger.logZoneError,
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<AuthenticatorWatcherBloc>()),
         BlocProvider(create: (_) => di.locator<SignInFormBloc>()),
         BlocProvider(create: (_) => di.locator<ThemeCubit>()),
+        BlocProvider(create: (_) => di.locator<UserBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         theme: themeLight(context),
         darkTheme: themeDark(context),
         themeMode: ThemeMode.system,
-        routerConfig: routerinit,
+        routerConfig: routerInit,
       ),
     );
   }
