@@ -1,9 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/config/routes.dart';
+import '../../cubit/theme/theme_cubit.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -19,6 +21,18 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       appBar: AppBar(
         title: const Text('Dashboard'),
         actions: [
+          BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, state) {
+              return IconButton(
+                icon: Icon(
+                  state is ThemeLight ? Icons.dark_mode : Icons.light_mode,
+                ),
+                onPressed: () {
+                  context.read<ThemeCubit>().changeTheme();
+                },
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {},
