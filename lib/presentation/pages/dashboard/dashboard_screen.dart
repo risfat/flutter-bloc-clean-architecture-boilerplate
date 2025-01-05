@@ -118,8 +118,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           padding: const EdgeInsets.all(16.0),
           child: LineChart(
             LineChartData(
-              gridData: FlGridData(show: false),
-              titlesData: FlTitlesData(show: false),
+              gridData: const FlGridData(show: false),
+              titlesData: const FlTitlesData(show: false),
               borderData: FlBorderData(show: false),
               lineBarsData: [
                 LineChartBarData(
@@ -135,7 +135,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   isCurved: true,
                   color: Colors.blue,
                   barWidth: 4,
-                  dotData: FlDotData(show: false),
+                  dotData: const FlDotData(show: false),
                   belowBarData: BarAreaData(
                       show: true, color: Colors.blue.withOpacity(0.1)),
                 ),
