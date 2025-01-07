@@ -42,6 +42,10 @@ The project follows a well-defined directory structure to keep your code organiz
 
 - **Main.dart**: The entry point of the Flutter application.
 
+## Project Demo
+
+<br/> <div style="text-align: center;"><img src="demo/app_demo.gif" width="250" alt="Demo"></div>
+
 ## Getting Started
 
 1. Clone this repository to your local machine:
