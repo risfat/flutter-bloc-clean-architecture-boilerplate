@@ -41,10 +41,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => di.locator<AuthenticatorWatcherBloc>()),
-        BlocProvider(create: (_) => di.locator<SignInFormBloc>()),
-        BlocProvider(create: (_) => di.locator<ThemeCubit>()),
-        BlocProvider(create: (_) => di.locator<UserBloc>()),
+        BlocProvider(create: (_) => di.getIt<AuthenticatorWatcherBloc>()),
+        BlocProvider(create: (_) => di.getIt<SignInFormBloc>()),
+        BlocProvider(create: (_) => di.getIt<ThemeCubit>()),
+        BlocProvider(create: (_) => di.getIt<UserBloc>()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, themeState) {

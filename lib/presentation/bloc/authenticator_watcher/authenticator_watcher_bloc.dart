@@ -18,9 +18,9 @@ class AuthenticatorWatcherBloc
           emit(const AuthenticatorWatcherState.authenticating());
           final prefs = await SharedPreferences.getInstance();
           final token = prefs.getString(ACCESS_TOKEN);
-          final showOnbording = prefs.getString(ONBOARDING);
-          if (showOnbording == null) {
-            prefs.setString(ONBOARDING, ONBOARDING);
+          final showOnboarding = prefs.getString(ONBOARDING);
+          if (showOnboarding == null) {
+            await prefs.setBool(ONBOARDING, true);
             emit(const AuthenticatorWatcherState.isFirstTime());
           } else if (token != null) {
             emit(const AuthenticatorWatcherState.authenticated());
@@ -31,7 +31,7 @@ class AuthenticatorWatcherBloc
         signOut: (_) async {
           emit(const AuthenticatorWatcherState.authenticating());
           final prefs = await SharedPreferences.getInstance();
-          prefs.remove(ACCESS_TOKEN);
+          await prefs.remove(ACCESS_TOKEN);
           emit(const AuthenticatorWatcherState.unauthenticated());
         },
       );

@@ -14,7 +14,7 @@ class CustomErrorWidget extends StatelessWidget {
   String get userFriendlyMessage {
     if (errorMessage.contains('ApiException: Not found')) {
       return 'The requested information could not be found. Please try again later.';
-    } else if (errorMessage.contains('ApiException')) {
+    } else if (errorMessage.contains('Failed host lookup')) {
       return 'There was a problem connecting to the server. Please check your internet connection and try again.';
     } else if (errorMessage.contains('API rate limit likely exceeded')) {
       return 'Please try again later, as the API rate limit has likely been exceeded.';

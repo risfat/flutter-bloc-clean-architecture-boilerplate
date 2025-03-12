@@ -3,9 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/config/constants.dart';
 import '../../../core/network/api.dart';
-import '../../../core/network/dio_client.dart';
 import '../../../core/utilities/logger.dart';
-import '../../../core/utilities/token_service.dart';
 
 abstract class AuthenticationRemoteDataSource {
   Future<void> login(String email, String password);
@@ -13,8 +11,9 @@ abstract class AuthenticationRemoteDataSource {
 
 class AuthenticationRemoteDataSourceImpl
     implements AuthenticationRemoteDataSource {
-  static final Dio dio = DioClient.instance;
-  final TokenService tokenService = TokenService(dio);
+  final Dio dio;
+
+  AuthenticationRemoteDataSourceImpl({required this.dio});
 
   @override
   Future<void> login(String email, String password) async {
@@ -26,8 +25,10 @@ class AuthenticationRemoteDataSourceImpl
         'username': email,
         'password': password,
       });
-      final token = response.data["accessToken"].toString();
-      await prefs.setString(ACCESS_TOKEN, token);
+      final String? token = response.data["accessToken"];
+      if (token != null) {
+        await prefs.setString(ACCESS_TOKEN, token);
+      }
       logger.info('Login successful');
     } catch (e) {
       logger.error('Login failed', error: e);

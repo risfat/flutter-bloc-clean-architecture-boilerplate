@@ -31,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     if (emit.isDone) return;
 
     failureOrUsers.fold(
-      (failure) => emit(const UserState.error(message: 'Failed to load users')),
+      (failure) => emit(UserState.error(message: failure.message)),
       (users) => emit(UserState.loaded(
         users: users,
         hasReachedMax: users.length < _usersPerPage,

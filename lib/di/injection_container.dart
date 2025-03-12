@@ -1,9 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../core/config/boxs.dart';
-import '../core/network/network_info.dart';
+import '../core/network/dio_client.dart';
 import '../data/datasources/local/user_local_data_source.dart';
 import '../data/datasources/remote/authentication_remote_data_source.dart';
 import '../data/datasources/remote/user_remote_data_source.dart';
@@ -18,7 +17,7 @@ import '../presentation/bloc/sign_in_form/sign_in_form_bloc.dart';
 import '../presentation/bloc/user/user_bloc.dart';
 import '../presentation/cubit/theme/theme_cubit.dart';
 
-final locator = GetIt.instance;
+final getIt = GetIt.instance;
 
 // Function to initialize the dependency injection
 Future<void> initializeDependencies() async {
@@ -28,52 +27,53 @@ Future<void> initializeDependencies() async {
 
 // Function to set up synchronous registrations
 void setupSynchronousRegistrations() {
-  // External
-  locator.registerLazySingleton(() => InternetConnectionChecker.instance);
+  // Dio
+  getIt.registerLazySingleton(() => DioClient.instance);
 
-  // Network
-  locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
+  // // Network
+  // getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(getIt()));
 
   // Data sources
-  locator.registerLazySingleton<AuthenticationRemoteDataSource>(
-    () => AuthenticationRemoteDataSourceImpl(),
+  getIt.registerLazySingleton<AuthenticationRemoteDataSource>(
+    () => AuthenticationRemoteDataSourceImpl(dio: getIt()),
   );
 
-  locator.registerLazySingleton<UserLocalDataSource>(
-    () => UserLocalDataSourceImpl(userBox: locator()),
+  getIt.registerLazySingleton<UserLocalDataSource>(
+    () => UserLocalDataSourceImpl(userBox: getIt()),
   );
 
-  locator.registerLazySingleton<UserRemoteDataSource>(
+  getIt.registerLazySingleton<UserRemoteDataSource>(
     () => UserRemoteDataSourceImpl(),
   );
 
   // Repositories
-  locator.registerLazySingleton<AuthenticationRepository>(
-    () => AuthenticationRepositoryImpl(locator()),
+  getIt.registerLazySingleton<AuthenticationRepository>(
+    () => AuthenticationRepositoryImpl(getIt()),
   );
 
-  locator.registerLazySingleton<UserRepository>(
+  getIt.registerLazySingleton<UserRepository>(
     () => UserRepositoryImpl(
-      remoteDataSource: locator(),
-      localDataSource: locator(),
-      networkInfo: locator(),
+      remoteDataSource: getIt(),
+      localDataSource: getIt(),
     ),
   );
 
   // Use cases
-  locator.registerLazySingleton(() => SignIn(locator()));
-  locator.registerLazySingleton(() => GetUsers(locator()));
+  getIt.registerLazySingleton(() => SignIn(getIt()));
+  getIt.registerLazySingleton(() => GetUsers(getIt()));
 
   // BLoCs
-  locator.registerLazySingleton(() => AuthenticatorWatcherBloc());
-  locator.registerLazySingleton(() => SignInFormBloc(locator()));
-  locator.registerLazySingleton(() => ThemeCubit());
-  locator.registerLazySingleton(() => UserBloc(getUsers: locator()));
+  getIt.registerLazySingleton(() => AuthenticatorWatcherBloc());
+  getIt.registerLazySingleton(() => SignInFormBloc(getIt()));
+  getIt.registerLazySingleton(() => ThemeCubit());
+  getIt.registerLazySingleton(() => UserBloc(getUsers: getIt()));
 }
 
 Future<void> setupAsynchronousRegistrations() async {
   // Open Hive box
   final userBox = await Hive.openBox<String>(HiveBox.userBox);
+  final configBox = await Hive.openBox(HiveBox.configBox);
   // Register box in GetIt
-  locator.registerLazySingleton<Box<String>>(() => userBox);
+  getIt.registerLazySingleton<Box<String>>(() => userBox);
+  getIt.registerLazySingleton<Box>(() => configBox);
 }
